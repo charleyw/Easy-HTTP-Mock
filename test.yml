@@ -1,0 +1,19 @@
+---
+  - &bar
+    request: &bar_request
+      path: /bar
+    response: bar.json
+  -
+    <<: *bar
+    request:
+      query:
+        param_one: haha
+        param_two: blabla
+    response: bar_haha.json
+  -
+    request:
+      <<: *bar_request
+      query:
+        param_three: hehe
+    response: bar_hehe.json
+...
