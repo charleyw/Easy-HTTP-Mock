@@ -9,27 +9,17 @@ set(:query) do |query_params|
   end
 end
 
-SETTINGS = YAML.load_file "./test.yml"
+settings = YAML.load_file "./test.yml"
 
-#SETTINGS.each do |service|
-#  p "========================"
-#  p service
-#  p "========================"
-#  requestConf, responseConf = service['request'], service['response']
-#  get requestConf.delete('path'), requestConf do
-#    File.read(File.dirname(__FILE__) + "/" + responseConf)
-#  end
-#end
-
-
-get '/bar', :query => [{'param_one' => 'haha'}]  do
-  File.read(File.dirname(__FILE__) + "/" + "bar_haha.json")
+def process_configuration conf
+  conf.sort do |x, y|
+    x['request'].size < y['request'].size ? 1 : -1
+  end
 end
 
-get '/bar', :query => [{'param_three' => 'hehe'}]  do
-  File.read(File.dirname(__FILE__) + "/" + "bar_hehe.json")
-end
-
-get '/bar' do
-  File.read(File.dirname(__FILE__) + "/" + "bar.json")
+process_configuration(settings).each do |service|
+  requestConf, responseConf = service['request'], service['response']
+  get requestConf.delete('path'), requestConf do
+    File.read(File.dirname(__FILE__) + "/" + responseConf)
+  end
 end
