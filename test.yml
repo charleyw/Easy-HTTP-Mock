@@ -6,14 +6,14 @@
   -
     request:
       <<: *bar_request
-      :query:
-        - param_one: haha
-          param_two: blabla
+      query:
+        param_one: haha
+        param_two: blabla
     response: bar_haha.json
   -
     request:
       <<: *bar_request
-      :query:
-        - param_three: hehe
+      query:
+        param_three: hehe
     response: bar_hehe.json
 ...

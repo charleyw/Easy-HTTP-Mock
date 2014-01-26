@@ -19,7 +19,7 @@ end
 
 process_configuration(settings).each do |service|
   requestConf, responseConf = service['request'], service['response']
-  get requestConf.delete('path'), requestConf do
+  get requestConf.delete('path'), requestConf.inject({}) { |h, (k, v)| h[k] = [v]; h} do
     File.read(File.dirname(__FILE__) + "/" + responseConf)
   end
 end
