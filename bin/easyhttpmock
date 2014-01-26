@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+require 'optparse'
+require 'easy-http-mock'
+options = {}
+
+OptionParser.new { |op|
+  op.banner = "Usage: #{$0} [options] config_file"
+  op.on('-p', '--port [PORT]', Integer, 'set the port') { |port| options[:port] = port }
+  op.on('-o', '--addr [ADDR]', 'set the host') { |val| options[:addr] = val }
+  op.on('-h', '--help', 'show this usage') { puts op; exit }
+}.parse!(ARGV)
+
+config = ARGV[0]
+abort "configuration #{config} not found" unless File.exist? config
+
+EasyHttpMock.start(config, options)
