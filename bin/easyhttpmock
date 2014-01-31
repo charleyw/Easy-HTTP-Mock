@@ -6,7 +6,7 @@ options = {}
 OptionParser.new { |op|
   op.banner = "Usage: #{File.basename $0} [options] config_file"
   op.on('-p', '--port [PORT]', Integer, 'set the port') { |port| options[:port] = port }
-  op.on('-o', '--addr [ADDR]', 'set the host') { |val| options[:addr] = val }
+  op.on('-o', '--addr [ADDR]', 'set the host') { |val| options[:bind] = val }
   op.on('-h', '--help', 'show this usage') { puts op; exit }
 }.parse!(ARGV)
 
