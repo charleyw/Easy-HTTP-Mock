@@ -1,7 +1,7 @@
 $LOAD_PATH.unshift File.expand_path('../lib', __FILE__)
 require 'easy-http-mock/version'
 
-Gem::Specification.new 'Easy-HTTP-Mock', EasyHTTPMock::VERSION do |s|
+Gem::Specification.new 'easy-http-mock', EasyHTTPMock::VERSION do |s|
   s.description       = 'Easy HTTP Mock is a tool aim at quickly mock http service'
   s.summary           = 'Mock HTTP service at minutes'
   s.authors           = ['Wang Chao']
